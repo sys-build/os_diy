@@ -1,0 +1,204 @@
+Archive member included because of file (symbol)
+
+./golibc/golibc.lib(sprintf.o)
+                              ./out/kernel/bootpack.o (sprintf)
+./golibc/golibc.lib(vsprintf.o)
+                              ./golibc/golibc.lib(sprintf.o) (vsprintf)
+./golibc/golibc.lib(strtoul0.o)
+                              ./golibc/golibc.lib(vsprintf.o) (strtoul0)
+
+Allocating common symbols
+Common symbol       size              file
+
+keyfifo             0x18              ./out/kernel/int.o
+mousefifo           0x18              ./out/kernel/int.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000000024                . = 0x24
+
+.text           0x0000000000000030     0x196a
+ *(.text)
+ .text          0x0000000000000030      0x7bf ./out/kernel/bootpack.o
+                0x0000000000000030                _start
+                0x0000000000000616                wait_KBC_sendready
+                0x0000000000000635                init_keyboard
+                0x000000000000066f                enable_mouse
+                0x00000000000006b0                mouse_decode
+ *fill*         0x00000000000007ef        0x1 00
+ .text          0x00000000000007f0      0x244 ./out/kernel/dsctbl.o
+                0x00000000000007f0                init_gdtidt
+                0x0000000000000976                set_segmdesc
+                0x00000000000009f0                set_gatedesc
+ .text          0x0000000000000a34      0x144 ./out/kernel/fifo.o
+                0x0000000000000a34                fifo8_init
+                0x0000000000000a71                fifo8_put
+                0x0000000000000af1                fifo8_get
+                0x0000000000000b61                fifo8_status
+ .text          0x0000000000000b78      0x7af ./out/kernel/graphic.o
+                0x0000000000000b78                draw_rect
+                0x0000000000000bcb                init_screen
+                0x0000000000001024                draw_font
+                0x0000000000001161                draw_string
+                0x00000000000011c3                init_mouse_cursor
+                0x00000000000012b0                draw_block
+ *fill*         0x0000000000001327        0x1 00
+ .text          0x0000000000001328      0x1a6 ./out/kernel/int.o
+                0x0000000000001328                init_pic
+                0x0000000000001420                inthandler21
+                0x000000000000145f                inthandler2c
+                0x00000000000014b2                inthandler27
+ *fill*         0x00000000000014ce        0x2 00
+ .text          0x00000000000014d0        0x0 ./out/kernel/font.o
+ .text          0x00000000000014d0       0xb4 ./out/kernel/nasmfunc.o
+                0x00000000000014d0                io_hlt
+                0x00000000000014d2                io_cli
+                0x00000000000014d4                io_sti
+                0x00000000000014d6                io_stihlt
+                0x00000000000014d9                io_in8
+                0x00000000000014e4                io_in16
+                0x00000000000014f0                io_in32
+                0x00000000000014f6                io_out8
+                0x0000000000001500                io_out16
+                0x000000000000150b                io_out32
+                0x0000000000001515                io_load_eflags
+                0x0000000000001518                io_store_eflags
+                0x000000000000151f                load_gdtr
+                0x000000000000152f                load_idtr
+                0x000000000000153f                asm_inthandler21
+                0x0000000000001556                asm_inthandler27
+                0x000000000000156d                asm_inthandler2c
+ .text          0x0000000000001584       0x17 ./golibc/golibc.lib(sprintf.o)
+                0x0000000000001584                sprintf
+ *fill*         0x000000000000159b        0x1 00
+ .text          0x000000000000159c      0x2fd ./golibc/golibc.lib(vsprintf.o)
+                0x000000000000159c                vsprintf
+ *fill*         0x0000000000001899        0x3 00
+ .text          0x000000000000189c       0xfe ./golibc/golibc.lib(strtoul0.o)
+                0x00000000000018cf                strtoul0
+
+.iplt           0x00000000000019a0        0x0
+ .iplt          0x0000000000000000        0x0 ./out/kernel/bootpack.o
+
+.eh_frame       0x000000000000199c      0x3a8
+ *(.eh_frame)
+ .eh_frame      0x000000000000199c       0xb4 ./out/kernel/bootpack.o
+ .eh_frame      0x0000000000001a50       0x60 ./out/kernel/dsctbl.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x0000000000001ab0       0x80 ./out/kernel/fifo.o
+                                         0x98 (size before relaxing)
+ .eh_frame      0x0000000000001b30       0xc8 ./out/kernel/graphic.o
+                                         0xe0 (size before relaxing)
+ .eh_frame      0x0000000000001bf8       0x80 ./out/kernel/int.o
+                                         0x98 (size before relaxing)
+ .eh_frame      0x0000000000001c78       0x30 ./golibc/golibc.lib(sprintf.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x0000000000001ca8       0x50 ./golibc/golibc.lib(vsprintf.o)
+                                         0x68 (size before relaxing)
+ .eh_frame      0x0000000000001cf8       0x4c ./golibc/golibc.lib(strtoul0.o)
+                                         0x64 (size before relaxing)
+                0x0000000000310000                . = 0x310000
+
+.rodata         0x0000000000310000       0x1e
+ *(.rodata)
+ .rodata        0x0000000000310000       0x1e ./out/kernel/bootpack.o
+
+.rel.dyn        0x0000000000310020        0x0
+ .rel.iplt      0x0000000000000000        0x0 ./out/kernel/bootpack.o
+ .rel.text      0x0000000000000000        0x0 ./out/kernel/bootpack.o
+
+.data           0x0000000000310020     0x1160
+ *(.data)
+ .data          0x0000000000310020        0x0 ./out/kernel/bootpack.o
+ .data          0x0000000000310020        0x0 ./out/kernel/dsctbl.o
+ .data          0x0000000000310020        0x0 ./out/kernel/fifo.o
+ .data          0x0000000000310020      0x140 ./out/kernel/graphic.o
+                0x0000000000310020                COL24_FF0000
+                0x0000000000310023                COL24_00FF00
+                0x0000000000310026                COL24_FFFF00
+                0x0000000000310029                COL24_0000FF
+                0x000000000031002c                COL24_FF00FF
+                0x000000000031002f                COL24_00FFFF
+                0x0000000000310032                COL24_FFFFFF
+                0x0000000000310035                COL24_C6C6C6
+                0x0000000000310038                COL24_840000
+                0x000000000031003b                COL24_008400
+                0x000000000031003e                COL24_848400
+                0x0000000000310041                COL24_000084
+                0x0000000000310044                COL24_840084
+                0x0000000000310047                COL24_008484
+                0x000000000031004a                COL24_848484
+ .data          0x0000000000310160        0x0 ./out/kernel/int.o
+ .data          0x0000000000310160     0x1000 ./out/kernel/font.o
+                0x0000000000310160                g_font
+ .data          0x0000000000311160        0x0 ./golibc/golibc.lib(sprintf.o)
+ .data          0x0000000000311160       0x20 ./golibc/golibc.lib(vsprintf.o)
+ .data          0x0000000000311180        0x0 ./golibc/golibc.lib(strtoul0.o)
+
+.igot.plt       0x0000000000311180        0x0
+ .igot.plt      0x0000000000000000        0x0 ./out/kernel/bootpack.o
+
+.bss            0x0000000000311180       0x34
+ *(.bss)
+ .bss           0x0000000000311180        0x0 ./out/kernel/bootpack.o
+ .bss           0x0000000000311180        0x0 ./out/kernel/dsctbl.o
+ .bss           0x0000000000311180        0x0 ./out/kernel/fifo.o
+ .bss           0x0000000000311180        0x3 ./out/kernel/graphic.o
+                0x0000000000311180                COL24_000000
+ *fill*         0x0000000000311183        0x1 00
+ .bss           0x0000000000311184        0x0 ./out/kernel/int.o
+ .bss           0x0000000000311184        0x0 ./out/kernel/font.o
+ .bss           0x0000000000311184        0x0 ./golibc/golibc.lib(sprintf.o)
+ .bss           0x0000000000311184        0x0 ./golibc/golibc.lib(vsprintf.o)
+ .bss           0x0000000000311184        0x0 ./golibc/golibc.lib(strtoul0.o)
+ COMMON         0x0000000000311184       0x30 ./out/kernel/int.o
+                0x0000000000311184                keyfifo
+                0x000000000031119c                mousefifo
+LOAD ./out/kernel/bootpack.o
+LOAD ./out/kernel/dsctbl.o
+LOAD ./out/kernel/fifo.o
+LOAD ./out/kernel/graphic.o
+LOAD ./out/kernel/int.o
+LOAD ./out/kernel/font.o
+LOAD ./out/kernel/nasmfunc.o
+LOAD ./golibc/golibc.lib
+OUTPUT(./out/kernel/kernel.elf elf32-i386)
+
+.comment        0x0000000000000000       0x5a
+ .comment       0x0000000000000000       0x2a ./out/kernel/bootpack.o
+                                         0x2b (size before relaxing)
+ .comment       0x0000000000000000       0x2b ./out/kernel/dsctbl.o
+ .comment       0x0000000000000000       0x2b ./out/kernel/fifo.o
+ .comment       0x0000000000000000       0x2b ./out/kernel/graphic.o
+ .comment       0x0000000000000000       0x2b ./out/kernel/int.o
+ .comment       0x0000000000000000       0x2b ./out/kernel/font.o
+ .comment       0x000000000000002a       0x30 ./golibc/golibc.lib(sprintf.o)
+                                         0x31 (size before relaxing)
+ .comment       0x0000000000000000       0x31 ./golibc/golibc.lib(vsprintf.o)
+ .comment       0x0000000000000000       0x31 ./golibc/golibc.lib(strtoul0.o)
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./out/kernel/bootpack.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./out/kernel/dsctbl.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./out/kernel/fifo.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./out/kernel/graphic.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./out/kernel/int.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./out/kernel/font.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./golibc/golibc.lib(sprintf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./golibc/golibc.lib(vsprintf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ./golibc/golibc.lib(strtoul0.o)

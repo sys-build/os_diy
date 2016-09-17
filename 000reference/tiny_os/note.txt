@@ -1,0 +1,162 @@
+﻿
+AX 累加
+CX 计数
+DX 数据
+BX 基址
+SP 栈指针
+BP 基址指针
+SI 源变址
+DI 目的变址
+
+AL
+CL
+DL
+BL
+
+AH
+CH
+DH
+BH
+
+段寄存器
+ES extra segment
+CS code
+SS stack
+DS data
+FS segment part2
+GS segment part3
+
+x86 asm note:
+JC   jump if carry
+JNC  jump if not carry
+JAE  jump if above or equal
+JBE  jump if below or equal
+JB   jump if below
+
+
+nask code vs. nasm code:
+JMP entry       ->   JMP SHORT entry
+RESB 15         ->   TIMES 15 DB 0
+RESB 0x7dfe-$   ->   TIMES 0x1fe-($-$$) DB 0
+ALIGNB 16       ->   ALIGN 16, DB 0
+
+nasm note:
+$     计算得到它本身所在源代码行的开始处的地址
+$$    计算当前段开始处的地址
+$-$$  找出你当前在段内的偏移
+
+
+Linux 下制作虚拟软盘镜像
+dd if=/dev/zero of=floppy.img bs=512 count=2880
+mkfs.vfat floppy.img
+mkdir floppy
+mount floppy.img floppy
+umount floppy.img
+
+
+dd if=floppy.img bs=512 skip=1 of=floppy.img-no-boot-sector
+cat ipl floppy.img-no-boot-sector > floppy.img-new-boot-sector
+
+
+qemu-system-i386 -vga std -no-kvm -fda haribote.img
+
+
+gcc -m32 -nostdlib bootpack.o naskfunc.o -o a.out
+
+ld -m elf_386 -s -o hello hello.o
+
+
+
+
+gcc -m32 -c bootpack.c
+nasm naskfunc.nas -f elf32
+ld -m elf_i386 -nostdlib naskfunc.o bootpack.o -o a.out
+
+
+memory map:
+0x00000000 - 0x000fffff  1MB      启动时使用
+0x00100000 - 0x00267fff  1440KB   保存软盘的内容
+0x00268000 - 0x0026f7ff  30KB     空
+0x0026f800 - 0x0026ffff  2KB      IDT
+0x00270000 - 0x0027ffff  64KB     GDT
+0x00280000 - 0x002fffff  512KB    bootpack
+0x00300000 - 0x003fffff  1MB      栈及其他
+0x00400000 -                      空
+
+
+ar r ar.lib *.o
+
+分段机制：
+1. 段的起始地址
+2. 段的大小
+3. 段的属性
+
+段寄存器是16位的，因为为CPU设计上的原因，段寄存器低3位不能使用
+因此能够使用的只有13位，段号范围在0~8191
+
+GDTR寄存器
+
+对目标文件进行反汇编
+objdump -d -M intel dsctbl.o
+
+将源代码编译为汇编代码
+gcc -m32 -nostdinc -fno-stack-protector -I./golibc/ -S -masm=intel -o dsctbl.s dsctbl.c
+
+
+
+CALL
+在取出CALL指令之后及执行CALL指令之前
+使指令指针寄存器EIP指向紧接CALL指令的下一条指令
+CALL指令先将EIP值压入栈内，再进行控制转移
+当遇到RET指令时，栈内信息可使控制权直接回到CALL的下一条指令
+
+CALL PROC
+1. EIP入栈
+2. 跳转到PROC处执行
+
+leave
+指令所做的操作相当于MOV ESP,EBP 然后 POP EBP
+
+RET
+RET指令相当于POP EIP
+
+GDB设置反汇编格式
+set disassembly-flavor intel
+
+GDB X指令
+b 1 bytes
+h 2 bytes
+w 4 bytes
+g 8 bytes
+x 十六进制
+d 十进制
+u 十进制（无符号）
+o 八进制
+t 二进制
+i 指令地址格式显示
+c 按字符显示
+f 按浮点数显示
+
+.eh_frame
+exception handling frame
+
+
+-fno-exceptions
+
+JMP指令
+JMP无条件跳转指令
+
+http://zhiwei.li/text/
+
+The Vesa BIOS extension 2.0
+http://www.reocities.com/siliconvalley/park/8933/vesa.html
+
+
+Makefile notes:
+1. 生成源文件的信赖文件 
+   gcc -MM main.c
+
+
+
+
+

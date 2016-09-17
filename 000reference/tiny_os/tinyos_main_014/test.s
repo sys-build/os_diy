@@ -1,0 +1,58 @@
+
+out8:
+	push	ebp
+	mov	ebp, esp
+
+	sub	esp, 16
+	mov	eax, DWORD PTR [ebp+8]
+	sal	eax, 2
+	mov	DWORD PTR [ebp-4], eax
+	mov	eax, DWORD PTR [ebp-4]
+	mov	DWORD PTR g_out8, eax
+
+	leave
+	ret
+
+test:
+	push	ebp
+	mov	ebp, esp
+
+	sub	esp, 20
+	mov	DWORD PTR [ebp-4], 18
+	mov	eax, DWORD PTR [ebp-4]
+	mov	DWORD PTR [esp], eax
+	call	out8
+
+	leave
+	ret
+
+Disassembly of section .text:
+
+00000000 <out8>:
+   0:	55                   	push   ebp
+   1:	89 e5                	mov    ebp,esp
+
+   3:	83 ec 10             	sub    esp,0x10
+   6:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+   9:	c1 e0 02             	shl    eax,0x2
+   c:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+   f:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+  12:	a3 00 00 00 00       	mov    ds:0x0,eax
+
+  17:	c9                   	leave  
+  18:	c3                   	ret    
+
+00000019 <test>:
+  19:	55                   	push   ebp
+  1a:	89 e5                	mov    ebp,esp
+
+  1c:	83 ec 14             	sub    esp,0x14
+  1f:	c7 45 fc 12 00 00 00 	mov    DWORD PTR [ebp-0x4],0x12
+  26:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+  29:	89 04 24             	mov    DWORD PTR [esp],eax
+  2c:	e8 fc ff ff ff       	call   2d <test+0x14>
+
+  31:	c9                   	leave  
+  32:	c3                   	ret 
+
+

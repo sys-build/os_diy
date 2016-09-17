@@ -1,0 +1,404 @@
+Archive member included because of file (symbol)
+
+golibc/golibc.lib(sprintf.o)  bootpack.o (sprintf)
+golibc/golibc.lib(vsprintf.o)
+                              golibc/golibc.lib(sprintf.o) (vsprintf)
+golibc/golibc.lib(strtoul0.o)
+                              golibc/golibc.lib(vsprintf.o) (strtoul0)
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x0000000000000000        0x0 bootpack.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 font.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 graphic.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 dsctbl.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 int.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 golibc/golibc.lib(sprintf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 golibc/golibc.lib(vsprintf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 golibc/golibc.lib(strtoul0.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+Address of section .text set to 0x280024
+Address of section .data set to 0x310000
+LOAD bootpack.o
+LOAD asmfunc.o
+LOAD font.o
+LOAD graphic.o
+LOAD dsctbl.o
+LOAD int.o
+LOAD golibc/golibc.lib
+                0x0000000008048000                PROVIDE (__executable_start, 0x8048000)
+                0x0000000008048094                . = (0x8048000 + SIZEOF_HEADERS)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn        0x0000000008048094        0x0
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ .rel.text      0x0000000000000000        0x0 bootpack.o
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+ *(.rel.ifunc)
+
+.rel.plt        0x0000000008048094        0x0
+ *(.rel.plt)
+                0x0000000008048094                PROVIDE (__rel_iplt_start, .)
+ *(.rel.iplt)
+ .rel.iplt      0x0000000000000000        0x0 bootpack.o
+                0x0000000008048094                PROVIDE (__rel_iplt_end, .)
+
+.init
+ *(.init)
+
+.plt            0x00000000080480a0        0x0
+ *(.plt)
+ *(.iplt)
+ .iplt          0x0000000000000000        0x0 bootpack.o
+
+.text           0x0000000000280024     0x11b6
+ *(.text.unlikely .text.*_unlikely)
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ *(.text.hot .text.hot.*)
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x0000000000280024      0x169 bootpack.o
+                0x0000000000280024                _start
+ *fill*         0x000000000028018d        0x3 90909090
+ .text          0x0000000000280190       0xb4 asmfunc.o
+                0x0000000000280190                io_hlt
+                0x0000000000280192                io_cli
+                0x0000000000280194                io_sti
+                0x0000000000280196                io_stihlt
+                0x0000000000280199                io_in8
+                0x00000000002801a4                io_in16
+                0x00000000002801b0                io_in32
+                0x00000000002801b6                io_out8
+                0x00000000002801c0                io_out16
+                0x00000000002801cb                io_out32
+                0x00000000002801d5                io_load_eflags
+                0x00000000002801d8                io_store_eflags
+                0x00000000002801df                load_gdtr
+                0x00000000002801ef                load_idtr
+                0x00000000002801ff                asm_inthandler21
+                0x0000000000280216                asm_inthandler27
+                0x000000000028022d                asm_inthandler2c
+ .text          0x0000000000280244        0x0 font.o
+ .text          0x0000000000280244      0x6fd graphic.o
+                0x0000000000280244                init_palette
+                0x0000000000280268                set_palette
+                0x000000000028030d                boxfill8
+                0x0000000000280356                init_screen8
+                0x00000000002806dd                putfont8
+                0x00000000002807da                putfonts8_asc
+                0x000000000028083a                init_mouse_cursor8
+                0x00000000002808e4                putblock8_8
+ *fill*         0x0000000000280941        0x3 90909090
+ .text          0x0000000000280944      0x244 dsctbl.o
+                0x0000000000280944                init_gdtidt
+                0x0000000000280aca                set_segmdesc
+                0x0000000000280b44                set_gatedesc
+ .text          0x0000000000280b88      0x23c int.o
+                0x0000000000280b88                init_pic
+                0x0000000000280c80                inthandler21
+                0x0000000000280d14                inthandler2c
+                0x0000000000280da8                inthandler27
+ .text          0x0000000000280dc4       0x17 golibc/golibc.lib(sprintf.o)
+                0x0000000000280dc4                sprintf
+ *fill*         0x0000000000280ddb        0x1 90909090
+ .text          0x0000000000280ddc      0x2fd golibc/golibc.lib(vsprintf.o)
+                0x0000000000280ddc                vsprintf
+ *fill*         0x00000000002810d9        0x3 90909090
+ .text          0x00000000002810dc       0xfe golibc/golibc.lib(strtoul0.o)
+                0x000000000028110f                strtoul0
+ *(.gnu.warning)
+
+.fini
+ *(.fini)
+                0x00000000002811da                PROVIDE (__etext, .)
+                0x00000000002811da                PROVIDE (_etext, .)
+                0x00000000002811da                PROVIDE (etext, .)
+
+.rodata         0x00000000002811dc       0x48
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x00000000002811dc        0x9 bootpack.o
+ *fill*         0x00000000002811e5        0x3 00
+ .rodata        0x00000000002811e8       0x3c int.o
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x0000000000281224      0x2e0
+ *(.eh_frame)
+ .eh_frame      0x0000000000281224       0x34 bootpack.o
+ .eh_frame      0x0000000000281258      0x108 graphic.o
+                                        0x120 (size before relaxing)
+ .eh_frame      0x0000000000281360       0x60 dsctbl.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x00000000002813c0       0x78 int.o
+                                         0x90 (size before relaxing)
+ .eh_frame      0x0000000000281438       0x30 golibc/golibc.lib(sprintf.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x0000000000281468       0x50 golibc/golibc.lib(vsprintf.o)
+                                         0x68 (size before relaxing)
+ .eh_frame      0x00000000002814b8       0x4c golibc/golibc.lib(strtoul0.o)
+                                         0x64 (size before relaxing)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+                0x0000000000281504                . = (ALIGN (0x1000) - ((0x1000 - .) & 0xfff))
+                0x0000000000282000                . = DATA_SEGMENT_ALIGN (0x1000, 0x1000)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x0000000000282000        0x0
+                0x0000000000282000                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x0000000000282000                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x0000000000282000        0x0
+                0x0000000000282000                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*) SORT(.ctors.*))
+ *(.init_array)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+                0x0000000000282000                PROVIDE (__init_array_end, .)
+
+.fini_array     0x0000000000282000        0x0
+                0x0000000000282000                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*) SORT(.dtors.*))
+ *(.fini_array)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+                0x0000000000282000                PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+
+.got
+ *(.got)
+ *(.igot)
+                0x0000000000282000                . = DATA_SEGMENT_RELRO_END (., 0xc)
+
+.got.plt        0x0000000000282000        0x0
+ *(.got.plt)
+ *(.igot.plt)
+ .igot.plt      0x0000000000000000        0x0 bootpack.o
+
+.data           0x0000000000310000     0x1150
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0000000000310000        0x0 bootpack.o
+ .data          0x0000000000310000     0x1000 font.o
+                0x0000000000310000                g_font
+ .data          0x0000000000311000      0x130 graphic.o
+ .data          0x0000000000311130        0x0 dsctbl.o
+ .data          0x0000000000311130        0x0 int.o
+ .data          0x0000000000311130        0x0 golibc/golibc.lib(sprintf.o)
+ .data          0x0000000000311130       0x20 golibc/golibc.lib(vsprintf.o)
+ .data          0x0000000000311150        0x0 golibc/golibc.lib(strtoul0.o)
+
+.data1
+ *(.data1)
+                0x0000000000311150                _edata = .
+                0x0000000000311150                PROVIDE (edata, .)
+                0x0000000000311150                __bss_start = .
+
+.bss            0x0000000000311150        0x0
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0000000000311150        0x0 bootpack.o
+ .bss           0x0000000000311150        0x0 font.o
+ .bss           0x0000000000311150        0x0 graphic.o
+ .bss           0x0000000000311150        0x0 dsctbl.o
+ .bss           0x0000000000311150        0x0 int.o
+ .bss           0x0000000000311150        0x0 golibc/golibc.lib(sprintf.o)
+ .bss           0x0000000000311150        0x0 golibc/golibc.lib(vsprintf.o)
+ .bss           0x0000000000311150        0x0 golibc/golibc.lib(strtoul0.o)
+ *(COMMON)
+                0x0000000000311150                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x0000000000311150                . = ALIGN (0x4)
+                0x0000000000311150                . = ALIGN (0x4)
+                0x0000000000311150                _end = .
+                0x0000000000311150                PROVIDE (end, .)
+                0x0000000000311150                . = DATA_SEGMENT_END (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x30
+ *(.comment)
+ .comment       0x0000000000000000       0x30 bootpack.o
+                                         0x31 (size before relaxing)
+ .comment       0x0000000000000000       0x31 font.o
+ .comment       0x0000000000000000       0x31 graphic.o
+ .comment       0x0000000000000000       0x31 dsctbl.o
+ .comment       0x0000000000000000       0x31 int.o
+ .comment       0x0000000000000000       0x31 golibc/golibc.lib(sprintf.o)
+ .comment       0x0000000000000000       0x31 golibc/golibc.lib(vsprintf.o)
+ .comment       0x0000000000000000       0x31 golibc/golibc.lib(strtoul0.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(tinyos.elf elf32-i386)

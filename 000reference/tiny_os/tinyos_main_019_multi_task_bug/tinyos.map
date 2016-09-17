@@ -1,0 +1,305 @@
+Archive member included because of file (symbol)
+
+golibc/golibc.lib(sprintf.o)  bootpack.o (sprintf)
+golibc/golibc.lib(vsprintf.o)
+                              golibc/golibc.lib(sprintf.o) (vsprintf)
+golibc/golibc.lib(strtoul0.o)
+                              golibc/golibc.lib(vsprintf.o) (strtoul0)
+
+Allocating common symbols
+Common symbol       size              file
+
+mousedata0          0x4               mouse.o
+keyfifo             0x4               keyboard.o
+taskctl             0x4               mtask.o
+timerctl            0x271c            timer.o
+mousefifo           0x4               mouse.o
+task_timer          0x4               mtask.o
+keydata0            0x4               keyboard.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD bootpack.o
+LOAD nasmfunc.o
+LOAD font.o
+LOAD graphic.o
+LOAD dsctbl.o
+LOAD int.o
+LOAD fifo.o
+LOAD keyboard.o
+LOAD mouse.o
+LOAD memory.o
+LOAD sheet.o
+LOAD timer.o
+LOAD mtask.o
+LOAD golibc/golibc.lib
+                0x0000000000000024                . = 0x24
+
+.text           0x0000000000000030     0x3f5a
+ *(.text)
+ .text          0x0000000000000030     0x13b2 bootpack.o
+                0x0000000000000030                _start
+                0x0000000000000c02                make_window8
+                0x0000000000000f48                putfonts8_asc_sht
+                0x0000000000001006                make_textbox8
+                0x000000000000129f                task_b_main
+ *fill*         0x00000000000013e2        0xe 00
+ .text          0x00000000000013f0      0x124 nasmfunc.o
+                0x00000000000013f0                io_hlt
+                0x00000000000013f2                io_cli
+                0x00000000000013f4                io_sti
+                0x00000000000013f6                io_stihlt
+                0x00000000000013f9                io_in8
+                0x0000000000001404                io_in16
+                0x0000000000001410                io_in32
+                0x0000000000001416                io_out8
+                0x0000000000001420                io_out16
+                0x000000000000142b                io_out32
+                0x0000000000001435                io_load_eflags
+                0x0000000000001438                io_store_eflags
+                0x000000000000143f                load_gdtr
+                0x000000000000144f                load_idtr
+                0x000000000000145f                load_cr0
+                0x0000000000001463                store_cr0
+                0x000000000000146b                load_tr
+                0x0000000000001471                asm_inthandler20
+                0x0000000000001488                asm_inthandler21
+                0x000000000000149f                asm_inthandler27
+                0x00000000000014b6                asm_inthandler2c
+                0x00000000000014cd                memtest_sub
+                0x000000000000150f                farjmp
+ .text          0x0000000000001514        0x0 font.o
+ .text          0x0000000000001514      0x6fd graphic.o
+                0x0000000000001514                init_palette
+                0x0000000000001538                set_palette
+                0x00000000000015dd                boxfill8
+                0x0000000000001626                init_screen8
+                0x00000000000019ad                putfont8
+                0x0000000000001aaa                putfonts8_asc
+                0x0000000000001b0a                init_mouse_cursor8
+                0x0000000000001bb4                putblock8_8
+ *fill*         0x0000000000001c11        0x3 00
+ .text          0x0000000000001c14      0x26e dsctbl.o
+                0x0000000000001c14                init_gdtidt
+                0x0000000000001dc4                set_segmdesc
+                0x0000000000001e3e                set_gatedesc
+ *fill*         0x0000000000001e82        0x2 00
+ .text          0x0000000000001e84      0x114 int.o
+                0x0000000000001e84                init_pic
+                0x0000000000001f7c                inthandler27
+ .text          0x0000000000001f98      0x181 fifo.o
+                0x0000000000001f98                fifo32_init
+                0x0000000000001fde                fifo32_put
+                0x0000000000002093                fifo32_get
+                0x0000000000002102                fifo32_status
+ *fill*         0x0000000000002119        0x3 00
+ .text          0x000000000000211c       0xaf keyboard.o
+                0x000000000000211c                inthandler21
+                0x0000000000002162                wait_KBC_sendready
+                0x0000000000002181                init_keyboard
+ *fill*         0x00000000000021cb        0x1 00
+ .text          0x00000000000021cc      0x1ea mouse.o
+                0x00000000000021cc                inthandler2c
+                0x0000000000002226                enable_mouse
+                0x0000000000002277                mouse_decode
+ *fill*         0x00000000000023b6        0x2 00
+ .text          0x00000000000023b8      0x4a6 memory.o
+                0x00000000000023b8                memtest
+                0x0000000000002460                memman_init
+                0x000000000000248c                memman_total
+                0x00000000000024c5                memman_alloc
+                0x00000000000025ad                memman_free
+                0x00000000000027f7                memman_alloc_4k
+                0x0000000000002827                memman_free_4k
+ *fill*         0x000000000000285e        0x2 00
+ .text          0x0000000000002860      0xac9 sheet.o
+                0x0000000000002860                shtctl_init
+                0x0000000000002946                sheet_alloc
+                0x00000000000029ba                sheet_setbuf
+                0x00000000000029e2                sheet_refreshmap
+                0x0000000000002b88                sheet_refreshsub
+                0x0000000000002d3a                sheet_updown
+                0x000000000000311e                sheet_refresh
+                0x00000000000031a3                sheet_slide
+                0x00000000000032fa                sheet_free
+ *fill*         0x0000000000003329        0x3 00
+ .text          0x000000000000332c      0x2a1 timer.o
+                0x000000000000332c                init_pit
+                0x00000000000033e0                timer_alloc
+                0x0000000000003449                timer_free
+                0x0000000000003458                timer_init
+                0x000000000000346f                timer_settime
+                0x0000000000003519                inthandler20
+ *fill*         0x00000000000035cd        0x3 00
+ .text          0x00000000000035d0      0x5a3 mtask.o
+                0x00000000000035d0                task_now
+                0x00000000000035ff                task_add
+                0x0000000000003646                task_remove
+                0x0000000000003701                task_switchsub
+                0x000000000000374c                task_init
+                0x00000000000038d8                task_alloc
+                0x00000000000039e8                task_run
+                0x0000000000003a57                task_sleep
+                0x0000000000003aa7                task_switch
+ *fill*         0x0000000000003b73        0x1 00
+ .text          0x0000000000003b74       0x17 golibc/golibc.lib(sprintf.o)
+                0x0000000000003b74                sprintf
+ *fill*         0x0000000000003b8b        0x1 00
+ .text          0x0000000000003b8c      0x2fd golibc/golibc.lib(vsprintf.o)
+                0x0000000000003b8c                vsprintf
+ *fill*         0x0000000000003e89        0x3 00
+ .text          0x0000000000003e8c       0xfe golibc/golibc.lib(strtoul0.o)
+                0x0000000000003ebf                strtoul0
+
+.iplt           0x0000000000003f90        0x0
+ .iplt          0x0000000000000000        0x0 bootpack.o
+
+.eh_frame       0x0000000000003f8c      0x898
+ *(.eh_frame)
+ .eh_frame      0x0000000000003f8c       0xc8 bootpack.o
+ .eh_frame      0x0000000000004054      0x108 graphic.o
+                                        0x120 (size before relaxing)
+ .eh_frame      0x000000000000415c       0x60 dsctbl.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x00000000000041bc       0x40 int.o
+                                         0x58 (size before relaxing)
+ .eh_frame      0x00000000000041fc       0x80 fifo.o
+                                         0x98 (size before relaxing)
+ .eh_frame      0x000000000000427c       0x60 keyboard.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x00000000000042dc       0x60 mouse.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x000000000000433c       0xec memory.o
+                                        0x104 (size before relaxing)
+ .eh_frame      0x0000000000004428      0x144 sheet.o
+                                        0x15c (size before relaxing)
+ .eh_frame      0x000000000000456c       0xc0 timer.o
+                                         0xd8 (size before relaxing)
+ .eh_frame      0x000000000000462c      0x12c mtask.o
+                                        0x144 (size before relaxing)
+ .eh_frame      0x0000000000004758       0x30 golibc/golibc.lib(sprintf.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x0000000000004788       0x50 golibc/golibc.lib(vsprintf.o)
+                                         0x68 (size before relaxing)
+ .eh_frame      0x00000000000047d8       0x4c golibc/golibc.lib(strtoul0.o)
+                                         0x64 (size before relaxing)
+                0x0000000000310000                . = 0x310000
+
+.rodata         0x0000000000310000       0x4f
+ *(.rodata)
+ .rodata        0x0000000000310000       0x4f bootpack.o
+
+.rel.dyn        0x0000000000310050        0x0
+ .rel.iplt      0x0000000000000000        0x0 bootpack.o
+ .rel.text      0x0000000000000000        0x0 bootpack.o
+
+.data           0x0000000000310060     0x1290
+ *(.data)
+ .data          0x0000000000310060      0x134 bootpack.o
+ *fill*         0x0000000000310194        0xc 00
+ .data          0x00000000003101a0     0x1000 font.o
+                0x00000000003101a0                g_font
+ .data          0x00000000003111a0      0x130 graphic.o
+ .data          0x00000000003112d0        0x0 dsctbl.o
+ .data          0x00000000003112d0        0x0 int.o
+ .data          0x00000000003112d0        0x0 fifo.o
+ .data          0x00000000003112d0        0x0 keyboard.o
+ .data          0x00000000003112d0        0x0 mouse.o
+ .data          0x00000000003112d0        0x0 memory.o
+ .data          0x00000000003112d0        0x0 sheet.o
+ .data          0x00000000003112d0        0x0 timer.o
+ .data          0x00000000003112d0        0x0 mtask.o
+ .data          0x00000000003112d0        0x0 golibc/golibc.lib(sprintf.o)
+ .data          0x00000000003112d0       0x20 golibc/golibc.lib(vsprintf.o)
+ .data          0x00000000003112f0        0x0 golibc/golibc.lib(strtoul0.o)
+
+.igot.plt       0x00000000003112f0        0x0
+ .igot.plt      0x0000000000000000        0x0 bootpack.o
+
+.bss            0x0000000000311300     0x2744
+ *(.bss)
+ .bss           0x0000000000311300        0x0 bootpack.o
+ .bss           0x0000000000311300        0x0 font.o
+ .bss           0x0000000000311300        0x0 graphic.o
+ .bss           0x0000000000311300        0x0 dsctbl.o
+ .bss           0x0000000000311300        0x0 int.o
+ .bss           0x0000000000311300        0x0 fifo.o
+ .bss           0x0000000000311300        0x0 keyboard.o
+ .bss           0x0000000000311300        0x0 mouse.o
+ .bss           0x0000000000311300        0x0 memory.o
+ .bss           0x0000000000311300        0x0 sheet.o
+ .bss           0x0000000000311300        0x0 timer.o
+ .bss           0x0000000000311300        0x0 mtask.o
+ .bss           0x0000000000311300        0x0 golibc/golibc.lib(sprintf.o)
+ .bss           0x0000000000311300        0x0 golibc/golibc.lib(vsprintf.o)
+ .bss           0x0000000000311300        0x0 golibc/golibc.lib(strtoul0.o)
+ COMMON         0x0000000000311300        0x8 keyboard.o
+                0x0000000000311300                keyfifo
+                0x0000000000311304                keydata0
+ COMMON         0x0000000000311308        0x8 mouse.o
+                0x0000000000311308                mousedata0
+                0x000000000031130c                mousefifo
+ *fill*         0x0000000000311310       0x10 00
+ COMMON         0x0000000000311320     0x271c timer.o
+                0x0000000000311320                timerctl
+ COMMON         0x0000000000313a3c        0x8 mtask.o
+                0x0000000000313a3c                taskctl
+                0x0000000000313a40                task_timer
+OUTPUT(tinyos.elf elf32-i386)
+
+.comment        0x0000000000000000       0x5a
+ .comment       0x0000000000000000       0x2a bootpack.o
+                                         0x2b (size before relaxing)
+ .comment       0x0000000000000000       0x2b font.o
+ .comment       0x0000000000000000       0x2b graphic.o
+ .comment       0x0000000000000000       0x2b dsctbl.o
+ .comment       0x0000000000000000       0x2b int.o
+ .comment       0x0000000000000000       0x2b fifo.o
+ .comment       0x0000000000000000       0x2b keyboard.o
+ .comment       0x0000000000000000       0x2b mouse.o
+ .comment       0x0000000000000000       0x2b memory.o
+ .comment       0x0000000000000000       0x2b sheet.o
+ .comment       0x0000000000000000       0x2b timer.o
+ .comment       0x0000000000000000       0x2b mtask.o
+ .comment       0x000000000000002a       0x30 golibc/golibc.lib(sprintf.o)
+                                         0x31 (size before relaxing)
+ .comment       0x0000000000000000       0x31 golibc/golibc.lib(vsprintf.o)
+ .comment       0x0000000000000000       0x31 golibc/golibc.lib(strtoul0.o)
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 bootpack.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 font.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 graphic.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 dsctbl.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 int.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 fifo.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 keyboard.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 mouse.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 memory.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 sheet.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 timer.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 mtask.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 golibc/golibc.lib(sprintf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 golibc/golibc.lib(vsprintf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 golibc/golibc.lib(strtoul0.o)

@@ -1,0 +1,51 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD boot.o
+LOAD font.o
+LOAD golibc/golibc.lib
+                0x0000000000000024                . = 0x24
+
+.text           0x0000000000000024       0x8c
+ *(.text)
+ .text          0x0000000000000024       0x89 boot.o
+                0x0000000000000024                _start
+ *fill*         0x00000000000000ad        0x3 00
+ .text          0x00000000000000b0        0x0 font.o
+
+.eh_frame       0x00000000000000b0       0x34
+ *(.eh_frame)
+ .eh_frame      0x00000000000000b0       0x34 boot.o
+                0x0000000000310000                . = 0x310000
+
+.rodata
+ *(.rodata)
+
+.data           0x0000000000310000     0x1000
+ *(.data)
+ .data          0x0000000000310000        0x0 boot.o
+ .data          0x0000000000310000     0x1000 font.o
+                0x0000000000310000                g_font
+
+.bss            0x0000000000311000        0x0
+ *(.bss)
+ .bss           0x0000000000311000        0x0 boot.o
+ .bss           0x0000000000311000        0x0 font.o
+OUTPUT(tinyos.elf elf32-i386)
+
+.comment        0x0000000000000000       0x30
+ .comment       0x0000000000000000       0x30 boot.o
+                                         0x31 (size before relaxing)
+ .comment       0x0000000000000000       0x31 font.o
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 boot.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 font.o
